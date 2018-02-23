@@ -1,0 +1,61 @@
+.drag-handle-icon {
+  color: grey;
+  margin-top: 6px;
+}
+
+.flex-row {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.flex-column {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.bullet-icons {
+  margin:auto;
+  padding: 0px 10px;
+}
+
+.bullet-content {
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.bullet-description {
+  padding: 10px 0px;
+}
+
+.bullet-header {
+  font-size:18px;
+  font-weight:bold;
+}
+
+.mat-chip {
+  padding: 0px 8px !important;
+  margin: 4px !important;
+}
+
+.chip-red {
+    background-color: red;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 4px;
+}
+
+.chip-blue {
+    background-color: dodgerblue;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 4px;
+}
+
+.chip-green {
+    background-color:limegreen;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 4px;
+}
