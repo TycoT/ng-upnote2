@@ -34,28 +34,3 @@
   font-weight:bold;
 }
 
-.mat-chip {
-  padding: 0px 8px !important;
-  margin: 4px !important;
-}
-
-.chip-red {
-    background-color: red;
-    border-radius: 4px;
-    padding: 4px;
-    margin: 4px;
-}
-
-.chip-blue {
-    background-color: dodgerblue;
-    border-radius: 4px;
-    padding: 4px;
-    margin: 4px;
-}
-
-.chip-green {
-    background-color:limegreen;
-    border-radius: 4px;
-    padding: 4px;
-    margin: 4px;
-}

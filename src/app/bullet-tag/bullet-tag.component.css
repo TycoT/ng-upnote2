@@ -1,0 +1,44 @@
+.mat-chip {
+  padding: 0px 8px !important;
+  margin: 4px !important;
+}
+
+.color-container {
+    border-radius: 4px;
+    padding: 4px;
+    margin: 4px;
+}
+
+.chip-red {
+    background-color: red;
+}
+
+.chip-blue {
+    background-color: dodgerblue;
+}
+
+.chip-green {
+    background-color: green;
+}
+
+.chip-orange {
+    background-color:orange;
+}
+.chip-pink {
+    background-color:pink;
+}
+.chip-purple {
+    background-color:purple;
+}
+.chip-brown {
+    background-color:brown;
+}
+.chip-teal {
+    background-color:teal;
+}
+.chip-cyan {
+    background-color:cyan;
+}
+.chip-grey {
+    background-color:grey;
+}

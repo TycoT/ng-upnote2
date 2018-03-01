@@ -1,36 +1,6 @@
-<!-- <mat-grid-list cols="8">
-
-  <mat-grid-tile colspan="2">
-    <mat-grid-list cols="2" rowHeight="4:1">
-      <mat-icon class="drag-handle-icon">drag_handle</mat-icon>
-      <mat-checkbox></mat-checkbox>
-    </mat-grid-list>
-  </mat-grid-tile>
-
-
-  <mat-grid-tile class="bullet-content-container" colspan="5">
-    <mat-list class="bullet-content">
-      <mat-list-item>
-        <h4>Bullet Title</h4>
-      </mat-list-item>
-      <mat-list-item>
-        <p>Description goes here</p>
-      </mat-list-item>
-    </mat-list>
-  </mat-grid-tile>
-
-
-  <mat-grid-tile colspan="1">
-    <div>
-      <button mat-icon-button>
-        <mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
-      </button>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list> -->
-
 <div class="flex-row">
 
+  <!-- bullet drag handle and icon -->
   <div class="flex-row">
     <div class="bullet-icons">
       <mat-icon class="drag-handle-icon">drag_handle</mat-icon>
@@ -40,19 +10,18 @@
     </div>
   </div>
 
+  <!-- bullet content -->
   <div class="flex-column bullet-content">
     <span class="bullet-header">{{bullet.title}}</span>
     <span class="bullet-description">
        {{bullet.desc}}
     </span>
     <mat-chip-list>
-      <mat-chip *ngFor="let tag of bullet.tags"> 
-        <div [class]="tag.color"></div>
-        <span>{{tag.name}}</span>
-      </mat-chip>
+      <app-bullet-tag *ngFor="let tag of bullet.tags" [tag]="tag"></app-bullet-tag>
     </mat-chip-list>
   </div>
 
+  <!-- delete button -->
   <div class="flex-row">
     <div class="bullet-icons">
       <button mat-icon-button>
@@ -61,9 +30,5 @@
     </div>
   </div>  
 </div>
-
-
-
-
 
 <mat-divider ></mat-divider>

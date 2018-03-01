@@ -10,6 +10,9 @@ import { BulletListComponent } from './bullet-list/bullet-list.component';
 import { BulletComponent } from './bullet/bullet.component';
 import { SharedModule } from './shared/shared.module';
 import { NewBulletDialogComponent } from './new-bullet-dialog/new-bullet-dialog.component';
+import { MatAutocompleteModule } from '@angular/material';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BulletTagComponent } from './bullet-tag/bullet-tag.component';
 
 
 @NgModule({
@@ -19,9 +22,16 @@ import { NewBulletDialogComponent } from './new-bullet-dialog/new-bullet-dialog.
     DayComponent,
     BulletListComponent,
     BulletComponent,
-    NewBulletDialogComponent
+    NewBulletDialogComponent,
+    BulletTagComponent
+  ],
+  entryComponents: [
+    NewBulletDialogComponent,
+    // BulletListComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule

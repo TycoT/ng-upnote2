@@ -1,3 +1,78 @@
-<p>
-  new-bullet-dialog works!
-</p>
+<h2 mat-dialog-title>
+  {{bullet.title ? 'Update Bullet' : 'Add New Bullet'}}
+</h2>
+<mat-dialog-content>
+
+  <!-- bullet type -->
+  <div [matMenuTriggerFor]="menu">
+      <button class="bullet-type-button" mat-button disableRipple>
+        <mat-icon>{{bullet.type ? bullet.type.materialRef : 'add'}}</mat-icon>
+        <span>{{bullet.type ? bullet.type.iconName : 'Bullet Type'}}</span>
+      </button>
+      <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before">
+        <button mat-menu-item *ngFor="let bulletType of bulletTypes" (click)="selectBulletType(bulletType)">
+          <mat-icon>{{bulletType.materialRef}}</mat-icon>
+          <span>{{bulletType.iconName}}</span>
+        </button>
+      </mat-menu>
+  </div>
+
+  <br/>
+
+  <!-- bullet title & Desciprtion -->
+  <div>
+    <div>
+      <mat-form-field>
+        <input #titleInput matInput 
+          placeholder="Title"
+          [(ngModel)]="bullet.title"
+        >
+      </mat-form-field>
+    </div>
+    
+    <div>
+      <mat-form-field>
+        <textarea #descInput matInput 
+          matTextareaAutosize 
+          matAutosizeMaxRows="5" 
+          placeholder="Description"
+           [(ngModel)]="bullet.desc"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- tags -->
+  <form class="autocomplete-form">
+    <mat-form-field class="autocomplete-full-width">
+      <input #autocompleteInput matInput type="text" placeholder="Add Tags" aria-label="Number" 
+        [formControl]="myControl" 
+        [matAutocomplete]="auto" 
+        (keyup.enter)="onTagEnter(autocompleteInput.value)"
+      >
+      <mat-autocomplete #auto="matAutocomplete"
+        (optionSelected)="onTagSelect($event);"
+      >
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+          <span [class]="'option-color-container chip-'+ option.color"></span>
+          <span>{{option.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <mat-chip-list class="chip-list">
+    <app-bullet-tag *ngFor="let tag of bullet.tags" 
+      [onRemove]="removeTag"
+      [tag]="tag"
+    ></app-bullet-tag>
+  </mat-chip-list>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true">Yes</button>
+</mat-dialog-actions>

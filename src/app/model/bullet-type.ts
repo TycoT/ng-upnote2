@@ -1,6 +1,7 @@
 export class BulletType {
   constructor(
-    private iconName: string,
-    private checked: boolean
+    private materialRef: string = null,
+    private iconName: string = null,
+    private checked: boolean = null
   ) {}
 }
