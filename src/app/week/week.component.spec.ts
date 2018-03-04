@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WeekComponent } from './week.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('WeekComponent', () => {
   let component: WeekComponent;
@@ -8,6 +9,7 @@ describe('WeekComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [ WeekComponent ]
     })
     .compileComponents();

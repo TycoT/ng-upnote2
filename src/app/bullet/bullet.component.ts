@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Bullet } from '../model/bullet';
 
 @Component({
   selector: 'app-bullet',
@@ -7,11 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BulletComponent implements OnInit {
 
-  @Input('bullet') bullet;
+  @Input() bullet = new Bullet();
+  @Output() remove = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handleRemove(bullet: Bullet) {
+    this.remove.emit(bullet);
   }
 
 }

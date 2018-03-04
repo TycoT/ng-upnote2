@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BulletTagComponent } from './bullet-tag.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('BulletTagComponent', () => {
   let component: BulletTagComponent;
@@ -8,6 +9,7 @@ describe('BulletTagComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [ BulletTagComponent ]
     })
     .compileComponents();

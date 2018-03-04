@@ -63,8 +63,8 @@
 
   <mat-chip-list class="chip-list">
     <app-bullet-tag *ngFor="let tag of bullet.tags" 
-      [onRemove]="removeTag"
       [tag]="tag"
+      (remove)="onRemoveTag($event)"
     ></app-bullet-tag>
   </mat-chip-list>
 
@@ -74,5 +74,5 @@
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>No</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button [mat-dialog-close]="true">Yes</button>
+  <button mat-button (click)="dialogOnYes()" [mat-dialog-close]="true">Yes</button>
 </mat-dialog-actions>

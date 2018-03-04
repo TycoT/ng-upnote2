@@ -18,6 +18,10 @@ export class NewBulletDialogComponent implements OnInit {
   @ViewChild('descInput') descInput: MatInput;
   @ViewChild('autocompleteInput') autocompleteInput: MatInput;
 
+  // call back function
+  onAddBullet: Function;
+  onUpdateBullet: Function;
+
   private bullet: Bullet;
   private bulletTypes: Array<BulletType> = [
     new BulletType('chevron_right', 'Note'),
@@ -29,10 +33,23 @@ export class NewBulletDialogComponent implements OnInit {
   filteredOptions: Observable<Tag[]>;
   tagOptions: Array<Tag>;
 
+  bulletId: number;
+
   constructor(
     public dialogRef: MatDialogRef<NewBulletDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.bullet = data;
+
+      // store the bullet's ref
+      this.bulletId = data.bullet;
+      this.onAddBullet = data.onAddBullet;
+      this.onUpdateBullet = data.onUpdateBullet;
+
+      this.bullet = Object.assign({}, data.bullet);
+
+      // copy the tags over. the reason we cant assign is that since its an array, its copied by refernce.
+      if (data.bullet) {
+        this.bullet.tags = data.bullet.tags.slice();
+      }
     }
 
   ngOnInit() {
@@ -122,9 +139,20 @@ export class NewBulletDialogComponent implements OnInit {
     })[0];
   }
 
-  removeTag = (tag) => {
+  onRemoveTag = (tag) => {
     console.log(tag);
     this.bullet.tags.splice(this.bullet.tags.indexOf(tag), 1);
+  }
+
+  dialogOnYes() {
+    // if a position is set, we are updating the bullet, else we add new bullet
+    if (this.bullet.id !== null) {
+      this.onUpdateBullet(this.bulletId, this.bullet);
+      // this.bulletId = this.bullet;
+    }
+    else {
+      this.onAddBullet(this.bullet);
+    }
   }
 
 }

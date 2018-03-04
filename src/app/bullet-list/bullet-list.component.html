@@ -7,6 +7,11 @@
 <mat-divider></mat-divider>
   <button mat-raised-button color="primary" (click)="openDialog(null)">Primary</button>
   <mat-list>
-      <app-bullet *ngFor="let bullet of bulletList" [bullet]="bullet" (click)="openDialog(bullet)"></app-bullet>
+      <app-bullet 
+        *ngFor="let bullet of bulletList"
+        [bullet]="bullet" 
+        (click)="openDialog(bullet)"
+        (remove)="onRemove($event)"
+      ></app-bullet>
   </mat-list>
 </p>

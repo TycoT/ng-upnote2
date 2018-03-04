@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Tag } from '../model/tag';
 
 @Component({
   selector: 'app-bullet-tag',
   template: `
-    <mat-chip (click)="onRemove(tag)">
+    <mat-chip (click)="removeHandler(tag)">
       <div [class]="'color-container chip-'+tag?.color"></div>
       <span>{{tag?.name}}</span>
     </mat-chip>
@@ -11,12 +12,18 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./bullet-tag.component.css']
 })
 export class BulletTagComponent implements OnInit {
-  @Input('tag') tag;
-  @Input('onRemove') onRemove;
+  @Input() tag;
+  @Output() remove = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  removeHandler(tag: any) {
+    this.remove.emit(tag);
+  }
+
+
 
 }

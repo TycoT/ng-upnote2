@@ -13,6 +13,7 @@ import { NewBulletDialogComponent } from './new-bullet-dialog/new-bullet-dialog.
 import { MatAutocompleteModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BulletTagComponent } from './bullet-tag/bullet-tag.component';
+import { BulletListService } from './service/bullet-list.service';
 
 
 @NgModule({
@@ -36,7 +37,9 @@ import { BulletTagComponent } from './bullet-tag/bullet-tag.component';
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    BulletListService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
