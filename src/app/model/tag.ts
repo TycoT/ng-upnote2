@@ -14,8 +14,8 @@ const tagColors = [
 export class Tag {
 
   constructor(
-    public name: string,
-    public color: string
+    public name: string = null,
+    public color: string = null
   ) {}
 
   static getUsedColors(tags: Array<Tag>) {

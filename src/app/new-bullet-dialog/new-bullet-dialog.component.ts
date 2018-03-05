@@ -40,7 +40,9 @@ export class NewBulletDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
       // store the bullet's ref
-      this.bulletId = data.bullet;
+      if (data.bullet) {
+        this.bulletId = data.bullet.id;
+      }
       this.onAddBullet = data.onAddBullet;
       this.onUpdateBullet = data.onUpdateBullet;
 
@@ -147,10 +149,12 @@ export class NewBulletDialogComponent implements OnInit {
   dialogOnYes() {
     // if a position is set, we are updating the bullet, else we add new bullet
     if (this.bullet.id !== null) {
+      console.log('update')
       this.onUpdateBullet(this.bulletId, this.bullet);
       // this.bulletId = this.bullet;
     }
     else {
+      console.log('add');
       this.onAddBullet(this.bullet);
     }
   }

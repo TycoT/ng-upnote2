@@ -62,7 +62,7 @@ export class BulletListService {
   }
 
   updateBullet = (bulletId, updatedBullet): Bullet => {
-    // call some service to update, on subscribe we find the position and set it
+    console.log(bulletId, updatedBullet);
 
     // set the updated bullet
     const originalBullet = this.getBulletById(bulletId);
@@ -73,8 +73,8 @@ export class BulletListService {
     return originalBullet;
   }
 
-  deleteBullet = (bullet): void => {
-    this.bulletList.splice(this.bulletList.indexOf(bullet), 1);
+  deleteBullet = (bullet): Bullet => {
+    return this.bulletList.splice(this.bulletList.indexOf(bullet), 1).pop();
   }
 
   getAllBulletList(): Bullet[] {

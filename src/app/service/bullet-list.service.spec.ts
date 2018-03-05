@@ -70,16 +70,23 @@ describe('BulletListService', () => {
   });
 
   it('#deleteBullet should get bullet by ID', () => {
-    const testId = 1337;
-    const newBullet = new Bullet({ id: testId });
-    const bulletListLength = service.getAllBulletList().length;
-    const updatedBulletListLength = service.getAllBulletList().length;
+    const newBullet = new Bullet({ id: 1337 });
     service.addBullet(newBullet);
-    expect(service.bulletList.shift()).toEqual(newBullet);
-    service.deleteBullet(newBullet);
+    const bulletListLength = service.getAllBulletList().length;
 
-    expect(service.getBulletById(testId)).toEqual(newBullet);
+    expect(service.deleteBullet(newBullet)).toEqual(newBullet);
+    expect(service.getAllBulletList().length).toEqual(bulletListLength - 1);
   });
 
-
+  // it('#getAllBulletList should get all bullets', () => {
+  //   let bulletList = service.getAllBulletList();
+  //   bulletList = [];
+  //   expect(service.getAllBulletList().length).toEqual(0);
+  //   service.addBullet(new Bullet());
+  //   expect(service.getAllBulletList().length).toEqual(1);
+  //   service.addBullet(new Bullet());
+  //   service.addBullet(new Bullet());
+  //   service.addBullet(new Bullet());
+  //   expect(service.getAllBulletList().length).toEqual(4);
+  // });
 });
