@@ -22,8 +22,8 @@ export class NewBulletDialogComponent implements OnInit {
   onAddBullet: Function;
   onUpdateBullet: Function;
 
-  private bullet: Bullet;
-  private bulletTypes: Array<BulletType> = [
+  bullet: Bullet;
+  bulletTypes: Array<BulletType> = [
     new BulletType('chevron_right', 'Note'),
     new BulletType('check_box', 'Todo'),
     new BulletType('lightbulb_outline', 'Idea'),
