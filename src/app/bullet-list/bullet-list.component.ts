@@ -5,6 +5,7 @@ import { Tag } from '../model/tag';
 import { MatDialog } from '@angular/material';
 import { NewBulletDialogComponent } from '../new-bullet-dialog/new-bullet-dialog.component';
 import { BulletListService } from '../service/bullet-list.service';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-bullet-list',
@@ -15,7 +16,12 @@ export class BulletListComponent implements OnInit {
 
   constructor(
     private bulletListService: BulletListService,
-    public dialog: MatDialog) { }
+    private dragulaService: DragulaService,
+    public dialog: MatDialog) {
+      dragulaService.setOptions('bag-one', {
+        removeOnSpill: false,
+      });
+    }
 
   ngOnInit() {
   }

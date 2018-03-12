@@ -1,6 +1,7 @@
 .drag-handle-icon {
   color: grey;
   margin-top: 6px;
+  cursor: move;
 }
 
 .flex-row {

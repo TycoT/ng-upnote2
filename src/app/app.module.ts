@@ -16,6 +16,7 @@ import { MatAutocompleteModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BulletTagComponent } from './bullet-tag/bullet-tag.component';
 import { BulletListService } from './service/bullet-list.service';
+import { DragulaModule, DragulaService } from 'ng2-dragula';
 
 
 @NgModule({
@@ -33,15 +34,17 @@ import { BulletListService } from './service/bullet-list.service';
     // BulletListComponent
   ],
   imports: [
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    DragulaModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
   ],
   providers: [
-    BulletListService
+    BulletListService,
+    DragulaService
   ],
   bootstrap: [AppComponent]
 })
