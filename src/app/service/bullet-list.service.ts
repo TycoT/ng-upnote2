@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Bullet } from '../model/bullet';
 import { BulletType } from '../model/bullet-type';
 import { Tag } from '../model/tag';
+import PouchDB from 'pouchdb';
 
 
 const bulletList: Bullet[] = [
@@ -46,18 +47,34 @@ const bulletList: Bullet[] = [
 @Injectable()
 export class BulletListService {
 
-  bulletList: Bullet[] = bulletList;
+  bulletList: Bullet[] = [];
+  db;
 
-  constructor() { }
+  constructor() {
+    this.bulletList = bulletList;
+
+    this.db = new PouchDB('bullets');
+
+    this.db.info().then(function (info) {
+      console.log(info);
+    })
+
+    
+  }
 
   addBullet = (bullet: Bullet) => {
     console.log(bullet);
+
+    bullet._id = new Date().toDateString();
+    this.db.put(bullet);
+    
+
     this.bulletList.unshift(bullet);
   }
 
-  getBulletById(id: number): Bullet {
+  getBulletById(id: string): Bullet {
     return this.bulletList
-      .filter(bullet => bullet.id === id)
+      .filter(bullet => bullet._id === id)
       .pop();
   }
 
@@ -79,6 +96,18 @@ export class BulletListService {
 
   getAllBulletList(): Bullet[] {
     return this.bulletList;
+  }
+
+  updatePositions(args) {
+    let [el, target, source] = args;
+    console.log(args);
+    console.log(el, target, source);
+    
+    for (let i = 0; i < this.bulletList.length; i++) {
+      this.bulletList[i].position = i;
+    }
+
+    console.log(this.bulletList);
   }
 
 }

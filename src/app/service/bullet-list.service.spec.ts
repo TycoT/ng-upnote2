@@ -30,7 +30,7 @@ describe('BulletListService', () => {
   });
 
   it('#getBulletById should get bullet by ID', () => {
-    const testId = 1337;
+    const testId = '1337';
     const newBullet = new Bullet({ id: testId });
     service.addBullet(newBullet);
 

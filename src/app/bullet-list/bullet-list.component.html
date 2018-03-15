@@ -10,14 +10,8 @@
     <app-bullet 
       *ngFor="let bullet of bulletList"
       [bullet]="bullet" 
-      (click)="openDialog(bullet)"
+      [updateHandler]="openDialog"
       (remove)="onRemove($event)"
     ></app-bullet>
 </mat-list>
-
-<div [dragula]='"bag-one"' >
-  <h1>test 1</h1>
-  <h1>test 2</h1>
-  <h1>test 3</h1>
-</div>
 

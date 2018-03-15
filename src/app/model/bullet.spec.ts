@@ -10,7 +10,7 @@ describe('Bullet', () => {
 
   it('should accept values in the constructor', () => {
     const testValues = {
-      id: 1337,
+      id: '1337',
       type: new BulletType('testRef', 'testIconName', true),
       position: 69,
       title: 'testTitle',
@@ -18,7 +18,7 @@ describe('Bullet', () => {
       tags: [new Tag('testName', 'testColor')]
     }
     let bullet = new Bullet(testValues);
-    expect(bullet.id).toEqual(testValues.id);
+    expect(bullet._id).toEqual(testValues.id);
     expect(bullet.type).toEqual(testValues.type);
     expect(bullet.position).toEqual(testValues.position);
     expect(bullet.title).toEqual(testValues.title);

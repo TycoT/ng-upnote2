@@ -148,7 +148,7 @@ export class NewBulletDialogComponent implements OnInit {
 
   dialogOnYes() {
     // if a position is set, we are updating the bullet, else we add new bullet
-    if (this.bullet.id !== null) {
+    if (this.bullet._id !== null) {
       console.log('update');
       this.onUpdateBullet(this.bulletId, this.bullet);
       // this.bulletId = this.bullet;

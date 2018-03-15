@@ -20,6 +20,14 @@ export class BulletListComponent implements OnInit {
     public dialog: MatDialog) {
       dragulaService.setOptions('bag-one', {
         removeOnSpill: false,
+        direction: 'vertical',
+        moves: function (el, container, handle) {
+          return handle.classList.contains('handle');
+        }
+      });
+
+      dragulaService.dropModel.subscribe((value) => {
+        this.bulletListService.updatePositions(value.slice(1));
       });
     }
 
@@ -27,7 +35,7 @@ export class BulletListComponent implements OnInit {
   }
 
   // can pass in a bullet in the parameters, however if nothing is passed, a empty one is created.
-  openDialog(bullet: Bullet) {
+  openDialog = (bullet: Bullet) => {
     this.dialog.open(NewBulletDialogComponent, {
       width: '232px',
       data: {
@@ -53,5 +61,4 @@ export class BulletListComponent implements OnInit {
   get bulletList() {
     return this.bulletListService.getAllBulletList();
   }
-
 }

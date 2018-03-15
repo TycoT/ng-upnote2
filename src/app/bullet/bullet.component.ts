@@ -7,8 +7,9 @@ import { Bullet } from '../model/bullet';
   styleUrls: ['./bullet.component.css']
 })
 export class BulletComponent implements OnInit {
-
   @Input() bullet = new Bullet();
+  @Input() updateHandler: Function;
+
   @Output() remove = new EventEmitter();
 
   constructor() { }
@@ -18,6 +19,10 @@ export class BulletComponent implements OnInit {
 
   handleRemove(bullet: Bullet) {
     this.remove.emit(bullet);
+  }
+
+  checkboxHandler(e) {
+    // e.preventDefault();
   }
 
 }

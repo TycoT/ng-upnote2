@@ -4,7 +4,7 @@ import { Tag } from './tag';
 
 export class Bullet {
 
-  public id: number = null;
+  public _id: string = null;
   public type: BulletType = null;
   public position: number = null;
   public title: string = null;
