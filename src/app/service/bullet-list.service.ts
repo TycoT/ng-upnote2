@@ -3,6 +3,7 @@ import { Bullet } from '../model/bullet';
 import { BulletType } from '../model/bullet-type';
 import { Tag } from '../model/tag';
 import PouchDB from 'pouchdb';
+import { Store } from '../model/store';
 
 
 const bulletList: Bullet[] = [
@@ -48,37 +49,47 @@ const bulletList: Bullet[] = [
 export class BulletListService {
 
   bulletList: Bullet[] = [];
-  db;
+  
+  store: Store;
 
   constructor() {
-    this.bulletList = bulletList;
+    // this.bulletList = bulletList;
 
-    this.db = new PouchDB('bullets');
+    this.store = new Store('bullets');
 
-    this.db.info().then(function (info) {
-      console.log(info);
+    this.store.getAll().then( bullets => {
+      console.log(bullets);
+      bullets.sort(function(a, b){return a.position - b.position});
+
+      this.bulletList = bullets;
     })
 
-    
+    console.log(this.bulletList);
   }
 
   addBullet = (bullet: Bullet) => {
     console.log(bullet);
 
-    bullet._id = new Date().toDateString();
-    this.db.put(bullet);
+    this.store.add(bullet);
+
+    // bullet._id = new Date().toDateString();
+    // this.db.put(bullet);
     
 
-    this.bulletList.unshift(bullet);
+    // this.bulletList.unshift(bullet);
   }
 
   getBulletById(id: string): Bullet {
-    return this.bulletList
-      .filter(bullet => bullet._id === id)
-      .pop();
+    return this.store.get(id);
+    
+    // return this.bulletList
+    //   .filter(bullet => bullet._id === id)
+    //   .pop();
   }
 
   updateBullet = (bulletId, updatedBullet): Bullet => {
+    this.store.save(updatedBullet);
+
     console.log(bulletId, updatedBullet);
 
     // set the updated bullet
