@@ -32,6 +32,7 @@ export class BulletListComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.bulletListService.getAndSetAllBulletList();
   }
 
   // can pass in a bullet in the parameters, however if nothing is passed, a empty one is created.
@@ -47,7 +48,9 @@ export class BulletListComponent implements OnInit {
   }
 
   addBullet = (bullet) => {
-    this.bulletListService.addBullet(bullet);
+    this.bulletListService.addBullet(bullet).then(() => {
+      this.bulletListService.getAndSetAllBulletList();
+    });
   }
 
   updateBullet = (bulletId, bullet) => {
@@ -59,6 +62,6 @@ export class BulletListComponent implements OnInit {
   }
 
   get bulletList() {
-    return this.bulletListService.getAllBulletList();
+    return this.bulletListService.bulletList;
   }
 }

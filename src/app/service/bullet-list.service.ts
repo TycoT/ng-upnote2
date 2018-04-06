@@ -57,12 +57,7 @@ export class BulletListService {
 
     this.store = new Store('bullets');
 
-    this.store.getAll().then( bullets => {
-      console.log(bullets);
-      bullets.sort(function(a, b){return a.position - b.position});
-
-      this.bulletList = bullets;
-    })
+    this.getAndSetAllBulletList();
 
     console.log(this.bulletList);
   }
@@ -70,18 +65,16 @@ export class BulletListService {
   addBullet = (bullet: Bullet) => {
     console.log(bullet);
 
-    this.store.add(bullet);
+    return this.store.add(bullet);
 
     // bullet._id = new Date().toDateString();
     // this.db.put(bullet);
-    
 
     // this.bulletList.unshift(bullet);
   }
 
   getBulletById(id: string): Bullet {
     return this.store.get(id);
-    
     // return this.bulletList
     //   .filter(bullet => bullet._id === id)
     //   .pop();
@@ -102,20 +95,32 @@ export class BulletListService {
   }
 
   deleteBullet = (bullet): Bullet => {
-    return this.bulletList.splice(this.bulletList.indexOf(bullet), 1).pop();
+    this.store.remove(bullet._id).then(() => {
+      this.getAndSetAllBulletList();
+    });
+    
+    return bullet;
+    // return this.bulletList.splice(this.bulletList.indexOf(bullet), 1).pop();
   }
 
-  getAllBulletList(): Bullet[] {
-    return this.bulletList;
+  getAndSetAllBulletList() {
+
+    this.store.getAll().then(bullets => {
+      console.log(bullets);
+      bullets.sort(function (a, b) { return a.position - b.position; });
+
+      this.bulletList = bullets;
+    });
   }
 
   updatePositions(args) {
-    let [el, target, source] = args;
+    const [el, target, source] = args;
     console.log(args);
     console.log(el, target, source);
-    
+
     for (let i = 0; i < this.bulletList.length; i++) {
       this.bulletList[i].position = i;
+      this.updateBullet(this.bulletList[i]._id, this.bulletList[i]);
     }
 
     console.log(this.bulletList);

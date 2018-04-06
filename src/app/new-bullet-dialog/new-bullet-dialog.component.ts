@@ -155,6 +155,9 @@ export class NewBulletDialogComponent implements OnInit {
     }
     else {
       console.log('add');
+      if (!this.bullet.type) {
+        this.bullet.type = this.bulletTypes[0];
+      }
       this.onAddBullet(this.bullet);
     }
   }

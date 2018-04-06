@@ -6,7 +6,7 @@
       <mat-icon class="drag-handle-icon handle">drag_handle</mat-icon>
     </div>
     <div class="bullet-icons">
-      <mat-checkbox (click)="checkboxHandler($event)" [(ngModel)]="bullet.type.checked" *ngIf="bullet.type.materialRef == 'check_box'"></mat-checkbox>
+      <mat-checkbox (click)="checkboxHandler($event)" [(ngModel)]="bullet.type.checked" *ngIf="bullet?.type?.materialRef == 'check_box'"></mat-checkbox>
       <mat-icon *ngIf="bullet.type.materialRef != 'check_box'">{{bullet.type ? bullet.type.materialRef : 'add'}}</mat-icon>
     </div>
   </div>
