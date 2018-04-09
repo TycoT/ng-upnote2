@@ -41,11 +41,12 @@ export class NewBulletDialogComponent implements OnInit {
 
       // store the bullet's ref
       if (data.bullet) {
-        this.bulletId = data.bullet.id;
+        this.bulletId = data.bullet._id;
       }
       this.onAddBullet = data.onAddBullet;
       this.onUpdateBullet = data.onUpdateBullet;
 
+      // make a copy. NOT A REFERENCE TO ORIGINAL.
       this.bullet = Object.assign({}, data.bullet);
 
       // copy the tags over. the reason we cant assign is that since its an array, its copied by refernce.
@@ -59,8 +60,8 @@ export class NewBulletDialogComponent implements OnInit {
     this.myControl = new FormControl();
 
     this.tagOptions = [
-      new Tag('Bad', 'red'),
-      new Tag('Okay', 'blue'),
+      new Tag('High priority', 'red'),
+      new Tag('Low priority', 'blue'),
       new Tag('Good', 'green'),
     ];
 

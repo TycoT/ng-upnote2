@@ -1,4 +1,5 @@
 import PouchDB from 'pouchdb';
+import { Bullet } from './bullet';
 
 export class Store {
 
@@ -44,9 +45,17 @@ export class Store {
       .then(updatingItem => {
         // update item
         Object.assign(updatingItem, item);
+        console.log(updatingItem);
         return this.db.put(updatingItem);
       });
   }
+
+  updatePositions(bullets: Bullet[]) {
+    console.table(bullets);
+    return this.db.bulkDocs(bullets);
+  }
+
+
 
   remove(id) {
     // find item by id

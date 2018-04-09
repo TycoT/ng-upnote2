@@ -10,10 +10,27 @@
   justify-content: space-around;
 }
 
+.flex-row.start {
+  justify-content: flex-start;
+}
+
+.chip-row {
+    position: absolute;
+    top: 35px;
+    left: 5px;
+}
+
 .flex-column {
   display:flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.bullet-flex-column {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .bullet-icons {
@@ -21,9 +38,15 @@
   padding: 0px 10px;
 }
 
+.bullet-icons > mat-checkbox {
+  padding: 0px 4px;
+}
+
+
 .bullet-content {
   padding: 5px 10px;
   width: 100%;
+  position: relative;
 }
 
 .bullet-description {
@@ -31,7 +54,7 @@
 }
 
 .bullet-header {
-  font-size:18px;
+  font-size:20px;
   font-weight:bold;
 }
 

@@ -49,7 +49,7 @@ const bulletList: Bullet[] = [
 export class BulletListService {
 
   bulletList: Bullet[] = [];
-  
+
   store: Store;
 
   constructor() {
@@ -64,6 +64,9 @@ export class BulletListService {
 
   addBullet = (bullet: Bullet) => {
     console.log(bullet);
+
+    this.updatePositions();
+
 
     return this.store.add(bullet);
 
@@ -80,25 +83,31 @@ export class BulletListService {
     //   .pop();
   }
 
-  updateBullet = (bulletId, updatedBullet): Bullet => {
-    this.store.save(updatedBullet);
+  updateBullet = (bulletId, updatedBullet) => {
+    this.store.save(updatedBullet).then((result) => {
 
-    console.log(bulletId, updatedBullet);
+      // update frontend
+      updatedBullet._rev = result.rev;
 
-    // set the updated bullet
-    const originalBullet = this.getBulletById(bulletId);
+      for (let i = 0; i < this.bulletList.length; i++) {
+        if (this.bulletList[i]._id === updatedBullet._id) {
+          this.bulletList[i] = updatedBullet;
+          return;
+        }
+      }
+      
+    });
 
-    Object.assign(originalBullet, updatedBullet);
-    // this.bulletList[this.bulletList.indexOf(bulletRef)] = updatedBullet;
-
-    return originalBullet;
   }
 
   deleteBullet = (bullet): Bullet => {
     this.store.remove(bullet._id).then(() => {
+      // remove from frontend
+      this.bulletList.splice(this.bulletList.indexOf(bullet), 1);
       this.getAndSetAllBulletList();
+      this.updatePositions();
     });
-    
+
     return bullet;
     // return this.bulletList.splice(this.bulletList.indexOf(bullet), 1).pop();
   }
@@ -106,24 +115,27 @@ export class BulletListService {
   getAndSetAllBulletList() {
 
     this.store.getAll().then(bullets => {
-      console.log(bullets);
       bullets.sort(function (a, b) { return a.position - b.position; });
+
 
       this.bulletList = bullets;
     });
   }
 
-  updatePositions(args) {
-    const [el, target, source] = args;
-    console.log(args);
-    console.log(el, target, source);
+  updatePositions(args?) {
+    // const [el, target, source] = args;
+    // console.log(args);
+    // console.log(el, target, source);
 
     for (let i = 0; i < this.bulletList.length; i++) {
-      this.bulletList[i].position = i;
-      this.updateBullet(this.bulletList[i]._id, this.bulletList[i]);
+      this.bulletList[i].position = i + 1; // we start at 1 becasue new positions are 'null', which wil be at the front
     }
 
-    console.log(this.bulletList);
+    this.store.updatePositions(this.bulletList).then((result) => {
+      result.map((updatedDocument, index) => {
+        this.bulletList[index]._rev = updatedDocument.rev;
+      });
+    });
   }
 
 }

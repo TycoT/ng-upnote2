@@ -6,20 +6,29 @@
       <mat-icon class="drag-handle-icon handle">drag_handle</mat-icon>
     </div>
     <div class="bullet-icons">
-      <mat-checkbox (click)="checkboxHandler($event)" [(ngModel)]="bullet.type.checked" *ngIf="bullet?.type?.materialRef == 'check_box'"></mat-checkbox>
+      <mat-checkbox class="bullet-icons__checkbox" (click)="checkboxHandler($event)" [(ngModel)]="bullet.type.checked" *ngIf="bullet?.type?.materialRef == 'check_box'"></mat-checkbox>
       <mat-icon *ngIf="bullet.type.materialRef != 'check_box'">{{bullet.type ? bullet.type.materialRef : 'add'}}</mat-icon>
     </div>
   </div>
 
   <!-- bullet content -->
   <div class="flex-column bullet-content" (click)="updateHandler(bullet)">
-    <span class="bullet-header">{{bullet.title}} - {{bullet.position}}</span>
-    <span class="bullet-description">
-       {{bullet.desc}} - checked? {{bullet.type.checked}}
-    </span>
-    <mat-chip-list>
-      <app-bullet-tag *ngFor="let tag of bullet.tags" [tag]="tag"></app-bullet-tag>
-    </mat-chip-list>
+    <div class="flex-row start">
+      <span class="bullet-header">{{bullet.title}} </span>
+    </div>
+    <div class="flex-row start">
+      <div *ngIf="bullet.desc" class="bullet-flex-column">
+        <span class="bullet-description">
+          {{bullet.desc}}
+        </span>
+      </div>
+    </div>
+
+    <div class="flex-row start">
+      <mat-chip-list>
+        <app-bullet-tag *ngFor="let tag of bullet.tags" [tag]="tag"></app-bullet-tag>
+      </mat-chip-list>
+    </div>
   </div>
 
   <!-- delete button -->

@@ -1,0 +1,11 @@
+.add-bullet {
+  text-align: center;
+  font-size: 28px;
+  cursor: cell;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}

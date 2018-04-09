@@ -9,6 +9,7 @@ import { Bullet } from '../model/bullet';
 export class BulletComponent implements OnInit {
   @Input() bullet = new Bullet();
   @Input() updateHandler: Function;
+  @Input() updateCheckboxHandler: Function;
 
   @Output() remove = new EventEmitter();
 
@@ -23,6 +24,7 @@ export class BulletComponent implements OnInit {
 
   checkboxHandler(e) {
     // e.preventDefault();
+    this.updateCheckboxHandler(this.bullet._id, this.bullet);
   }
 
 }

@@ -1,17 +1,21 @@
 
-  bullet-list works!
-  <br/>
-  <br/>
-  <br/>
-  <br/>
+
+<!-- <h3 class="add-bullet" (click)="openDialog(null)"><mat-icon>add</mat-icon> ADD NEW BULLET </h3> -->
 <mat-divider></mat-divider>
-<button mat-raised-button color="primary" (click)="openDialog(null)">Primary</button>
 <mat-list [dragula]='"bag-one"' [dragulaModel]='bulletList'>
     <app-bullet 
       *ngFor="let bullet of bulletList"
       [bullet]="bullet" 
       [updateHandler]="openDialog"
+      [updateCheckboxHandler]="updateBullet"
       (remove)="onRemove($event)"
     ></app-bullet>
 </mat-list>
+
+<div class="add-button">
+  <button mat-fab (click)="openDialog(null)">
+    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+  </button>
+
+</div>
 
