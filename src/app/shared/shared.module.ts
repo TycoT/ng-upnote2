@@ -34,6 +34,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({

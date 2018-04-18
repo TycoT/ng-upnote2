@@ -9,3 +9,13 @@
   bottom: 25px;
   right: 25px;
 }
+
+.search-container {
+      justify-content: center;
+    display: flex;
+        background-color: #eee;
+}
+
+.search-container > .mat-input-container {
+  width: 90%;
+}

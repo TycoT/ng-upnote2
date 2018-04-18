@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -17,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BulletTagComponent } from './bullet-tag/bullet-tag.component';
 import { BulletListService } from './service/bullet-list.service';
 import { DragulaModule, DragulaService } from 'ng2-dragula';
+import { FilterPipe } from './shared/filter.pipe';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { DragulaModule, DragulaService } from 'ng2-dragula';
     BulletListComponent,
     BulletComponent,
     NewBulletDialogComponent,
-    BulletTagComponent
+    BulletTagComponent,
+    FilterPipe
   ],
   entryComponents: [
     NewBulletDialogComponent,

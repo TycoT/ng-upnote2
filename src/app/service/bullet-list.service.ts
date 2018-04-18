@@ -49,6 +49,8 @@ const bulletList: Bullet[] = [
 export class BulletListService {
 
   bulletList: Bullet[] = [];
+  showSearch = false;
+  query: string;
 
   store: Store;
 
@@ -136,6 +138,11 @@ export class BulletListService {
         this.bulletList[index]._rev = updatedDocument.rev;
       });
     });
+  }
+
+  toggleSearch() {
+    this.showSearch = !this.showSearch;
+    this.query = '';
   }
 
 }

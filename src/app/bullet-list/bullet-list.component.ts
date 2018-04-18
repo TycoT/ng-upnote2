@@ -7,6 +7,8 @@ import { NewBulletDialogComponent } from '../new-bullet-dialog/new-bullet-dialog
 import { BulletListService } from '../service/bullet-list.service';
 import { DragulaService } from 'ng2-dragula';
 
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 
 declare var window: any;
 declare var $: any;
@@ -19,7 +21,19 @@ let animating = false;
 @Component({
   selector: 'app-bullet-list',
   templateUrl: './bullet-list.component.html',
-  styleUrls: ['./bullet-list.component.css']
+  styleUrls: ['./bullet-list.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        style({ transform: 'translateX(-100%)' }),
+        animate(100)
+      ]),
+      transition('* => void', [
+        animate(100, style({ transform: 'translateX(100%)' }))
+      ])
+    ])
+  ]
 })
 export class BulletListComponent implements OnInit {
 

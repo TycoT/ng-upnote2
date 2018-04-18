@@ -1,10 +1,18 @@
 
 
 <!-- <h3 class="add-bullet" (click)="openDialog(null)"><mat-icon>add</mat-icon> ADD NEW BULLET </h3> -->
+<div  [@flyInOut]="'in'" class="search-container" *ngIf="bulletListService.showSearch">
+  <mat-form-field [floatLabel]="'never'">
+    <input matInput placeholder="Search" [(ngModel)]="bulletListService.query">
+  </mat-form-field>
+</div>
+  
+
 <mat-divider></mat-divider>
 <mat-list [dragula]='"bag-one"' [dragulaModel]='bulletList'>
     <app-bullet 
-      *ngFor="let bullet of bulletList"
+       [@flyInOut]="'in'"
+      *ngFor="let bullet of bulletList | filter:'title,desc':bulletListService.query"
       [bullet]="bullet" 
       [updateHandler]="openDialog"
       [updateCheckboxHandler]="updateBullet"
